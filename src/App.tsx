@@ -30,7 +30,7 @@ function UserForm({
     onSubmit: async ({ formApi, value }) => {
       await saveUserMutation.mutateAsync(value);
       await refetch();
-      formApi.reset(initialData, {keepDefaultValues: true});
+      formApi.reset(initialData);
     },
   });
 
