@@ -30,7 +30,7 @@ function UserForm({
     onSubmit: async ({ formApi, value }) => {
       await saveUserMutation.mutateAsync(value);
       await refetch();
-      formApi.reset();
+      formApi.reset(initialData, {keepDefaultValues: true});
     },
   });
 
@@ -79,19 +79,7 @@ function UserForm({
             )}
           />
         </div>
-        <form.Subscribe
-          selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
-            <>
-              <button type="submit" disabled={!canSubmit}>
-                {isSubmitting ? '...' : 'Submit'}
-              </button>
-              <button type="reset" onClick={() => form.reset()}>
-                Reset
-              </button>
-            </>
-          )}
-        />
+          <button type="submit">Save</button>
       </form>
     </div>
   );
